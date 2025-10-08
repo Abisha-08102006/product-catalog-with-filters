@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Catalog with Filters</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .filter-buttons {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .filter-buttons button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .filter-buttons button.active {
+      background-color: #007bff;
+    }
+
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .product {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 220px;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .product:hover {
+      transform: scale(1.03);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .product h3 {
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    .product p {
+      margin: 0 10px 5px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .product .price {
+      color: #28a745;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Product Catalog</h1>
+
+<div class="filter-buttons">
+  <button class="active" onclick="filterProducts('all')">All</button>
+  <button onclick="filterProducts('shoes')">Shoes</button>
+  <button onclick="filterProducts('shirts')">Shirts</button>
+  <button onclick="filterProducts('accessories')">Accessories</button>
+</div>
+
+<div class="product-grid">
+  <!-- Shoes -->
+  <div class="product" data-category="shoes">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdUmNblMXWmQo2djj5E6lc767XoLkmDZtVNQ&s" alt="Running Shoes">
+    <h3>Running Shoes</h3>
+    <p>Shoes</p>
+    <p class="price">$59.99</p>
+  </div>
+
+  <div class="product" data-category="shoes">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkPxBakapro5VEsL1chauySLymL-HCJbNs3A&s" alt="Casual Sneakers">
+    <h3>Casual Sneakers</h3>
+    <p>Shoes</p>
+    <p class="price">$49.99</p>
+  </div>
+
+  <!-- Shirts -->
+  <div class="product" data-category="shirts">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5ESZL_Idpok09kEJoLhGtMm5hzj1Si___Q&s" alt="Cotton Shirt">
+    <h3>Cotton Shirt</h3>
+    <p>Shirts</p>
+    <p class="price">$29.99</p>
+  </div>
+
+  <div class="product" data-category="shirts">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHc3e0ZyDG_GQZBLAuDuhUPrFMsZZPEb26NA&s" alt="Formal Shirt">
+    <h3>Formal Shirt</h3>
+    <p>Shirts</p>
+    <p class="price">$39.99</p>
+  </div>
+
+  <!-- Accessories -->
+  <div class="product" data-category="accessories">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwrYBwW780sxotk7Qz-MHMAESeNU98nUcoxw&s" alt="Leather Watch">
+    <h3>Leather Watch</h3>
+    <p>Accessories</p>
+    <p class="price">$79.99</p>
+  </div>
+
+  <div class="product" data-category="accessories">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0T8QmUkeUum_pwssKaVR1erQ_kYkca5OlRw&s" alt="Leather Bag">
+    <h3>Leather Bag</h3>
+    <p>Accessories</p>
+    <p class="price">$89.99</p>
+  </div>
+</div>
+
+<script>
+  function filterProducts(category) {
+    const products = document.querySelectorAll('.product');
+    const buttons = document.querySelectorAll('.filter-buttons button');
+
+    // Update active button
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    products.forEach(product => {
+      const productCategory = product.getAttribute('data-category');
+      product.style.display = (category === 'all' || productCategory === category) ? 'block' : 'none';
+    });
+  }
+</script>
+
+</body>
+</html>
